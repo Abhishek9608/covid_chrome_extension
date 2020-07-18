@@ -1,6 +1,6 @@
 let data = [];
 let pageData = [];
-let perPage = 25;
+let perPage = 10;
 let activePage = 1;
 let select;
 
@@ -23,7 +23,7 @@ function loadData() {
 
 function pagination(page) {
   let total = data.length;
-  let pageCOunt = Math.ceil(total / perPage);
+  let pageCOunt = 10;
   let pages = document.getElementById("pages");
   pages.innerHTML = "";
 
