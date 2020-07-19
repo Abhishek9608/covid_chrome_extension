@@ -149,8 +149,6 @@ fetch("https://api.ipify.org?format=json")
   .then((res) => res.json())
   .then((data) => {
     let { ip } = data;
-    // console.log(ip);
-    // ipAddress.push(ip);
     locationFetch(ip);
   });
 
@@ -169,6 +167,9 @@ function covidWithState(state, city) {
       console.log(newData);
       let district = newData[0].districtData.filter((e) => e.name === city);
       console.log(district);
+      if (district.length == 0) {
+        district = newData[0].districtData[0];
+      }
       let htmlData = `
       <div class="col text-center text-white p-3">
       <div class="col district_case">
