@@ -170,16 +170,16 @@ function covidWithState(state, city) {
       let district = newData[0].districtData.filter((e) => e.name === city)
 
       if (district.length == 0) {
-        district = newData[0].districtData[0]
+        district = [newData[0].districtData[0]]
       }
       console.log(district)
       let htmlData = `
       <div class="col text-center text-white p-3">
       <div class="col district_case">
-          <h5>Your location is ${district.id}</h5> 
+          <h5>Your location is ${district[0].id}</h5> 
           <div class="col text-danger">
               <h5>Confirmed Case</h5>
-              <p>${district.confirmed}</p>
+              <p>${district[0].confirmed}</p>
           </div>
       </div>
       <div class="col state_case border p-0">
