@@ -127,16 +127,17 @@ fetch('https://thevirustracker.com/free-api?global=stats')
 //function for search
 document.getElementById('searching').addEventListener('click', function () {
   document.getElementById('global').innerHTML = ''
-  var search = document.getElementById('searching').value
-  fetch('https://api.covid19api.com/live/country/south-africa/status/confirmed')
+  var search = document.getElementById('findata').value
+  console.log(search)
+  fetch(`https://api.covid19api.com/live/country/${search}/status/confirmed`)
     .then((response) => response.json())
     .then((res) => {
       var glob = document.getElementById('global')
       var h6 = document.createElement('h6')
       h6.style.textAlign = 'center'
       h6.style.color = '#00FF00'
-      h6.style.marginLeft = '40px'
-      h6.textContent = 'Cases:' + res[0].Confirmed
+      h6.style.marginLeft = '10px'
+      h6.textContent = res[0].Confirmed
       glob.append(h6)
     })
 })
@@ -176,27 +177,27 @@ function covidWithState(state, city) {
       let htmlData = `
       <div class="col text-center text-white p-3">
       <div class="col district_case">
-          <h5>Your location is ${district[0].id}</h5> 
-          <div class="col text-danger">
-              <h5>Confirmed Case</h5>
-              <p>${district[0].confirmed}</p>
+          <h5><b>Your location is ${district[0].id}</b></h5> 
+          <div class="col text-danger" >
+              <h5 style="color:#ff0000"><b>Confirmed Case</b></h5>
+              <h5 style="color:#ff0000"><b>${district[0].confirmed}</b></h5>
           </div>
       </div>
-      <div class="col state_case border p-0">
-          <h5>Status of State(${newData[0].state})</h5>
+      <div class="col state_case border p-0 p-2">
+          <h5><b>Status of State(${newData[0].state})</b></h5>
           <div class="row"> 
               <div class="col p-0" >
-                  <h5>active <span>😷️</span> </h5>
-                  <p>${newData[0].active}</p>
+                  <h5 style="color:#00FFFF"><b>Active<span>😷️</span></b></h5>
+                  <p style="color:#00FFFF"><b>${newData[0].active}</b></p>
               </div>
               <div class="col text-success p-0">
-                  <h5>recovered <span>👨‍⚕️️</span> </h5>
-                  <p>${newData[0].recovered}</p>
+                  <h5 style="color:#00FF00"><b>Recovered <span>👨‍⚕️️</span></b></h5>
+                  <p style="color:#00FF00"><b>${newData[0].recovered}</b></p>
               </div>
               <div class="col text-danger p-0">
 
-                  <h5>Deaths☠️</h5>
-                  <p>${newData[0].deaths}</p>
+                  <h5 style="color:#ff0000"><b>Deaths☠️</b></h5>
+                  <p style="color:#ff0000"><b>${newData[0].deaths}</b></p>
               </div>
       </div>
       </div>
